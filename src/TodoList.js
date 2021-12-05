@@ -26,7 +26,10 @@ class ToodList extends Component {
         <ul>
           {
             this.state.list.map((item, index) => {
-              return <li>{item}</li>
+              return <li
+                key={index}
+                onClick={this.handleListDelete.bind(this, index)}
+              >{item}</li>
             })
           }
         </ul>
@@ -44,6 +47,14 @@ class ToodList extends Component {
     this.setState({
       list: [...this.state.list, this.state.inputValue],
       inputValue: ""
+    })
+  }
+
+  handleListDelete(index) {
+    const list = [...this.state.list]
+    list.splice(index, 1)
+    this.setState({
+      list: list
     })
   }
 
