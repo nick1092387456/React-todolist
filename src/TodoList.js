@@ -6,7 +6,7 @@ class ToodList extends Component {
     super(prop)
     this.state = {
       inputValue: '',
-      list: []
+      list: [1, 2, 3]
     }
   }
 
@@ -19,11 +19,16 @@ class ToodList extends Component {
             value={this.state.inputValue}
             onChange={this.handleInputChange.bind(this)}
           />
-          <button>送出</button>
+          <button
+            onClick={this.handleBtnClick.bind(this)}
+          >送出</button>
         </div>
-        <ul value={this.state.list} >
-          <li>吃飯</li>
-          <li>睡覺</li>
+        <ul>
+          {
+            this.state.list.map((item, index) => {
+              return <li>{item}</li>
+            })
+          }
         </ul>
       </Fragment>
     )
@@ -35,6 +40,12 @@ class ToodList extends Component {
     })
   }
 
+  handleBtnClick() {
+    this.setState({
+      list: [...this.state.list, this.state.inputValue],
+      inputValue: ""
+    })
+  }
 
 }
 
